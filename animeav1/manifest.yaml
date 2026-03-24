@@ -1,0 +1,8 @@
+id: animeav1
+name: AnimeAV1
+version: 1.0.0
+author: dot-fx
+type: anime
+language: es
+main: AnimeAV1.js
+icon: https://animeav1.com/favicon.ico

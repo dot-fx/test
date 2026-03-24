@@ -1,0 +1,10 @@
+id: nhentai
+name: nhentai
+version: "1.0.0"
+author: dot-fx
+type: manga
+main: nhentai.js
+language: en
+icon: https://nhentai.net/static/favicon.ico
+nsfw: true
+skip_default_processing: true
