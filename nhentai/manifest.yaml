@@ -5,6 +5,6 @@ author: dot-fx
 type: manga
 main: nhentai.js
 language: en
-icon: https://nhentai.net/static/favicon.ico
+icon: null
 nsfw: true
 skip_default_processing: true
