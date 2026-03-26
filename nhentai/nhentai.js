@@ -138,7 +138,7 @@ class NHentai extends Manga {
             return results;
 
         } catch (error) {
-            console.error(`[NHentai Search] ❌ Error: ${JSON.stringify(error)} - Stack: ${error.stack}`);            throw error;
+            console.error(`[NHentai Search] ❌ Error: ${JSON.stringify(error)} - Stack: ${error.stack}`);
         }
     }
 
