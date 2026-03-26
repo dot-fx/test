@@ -113,25 +113,34 @@ class NHentai extends Manga {
                 block:   ["fonts", "media"],
             });
 
+            console.log("[NHentai] html length:", html ? html.length : "NULL");
+            console.log("[NHentai] html snippet:", html ? html.slice(0, 300) : "empty");
 
             if (html && (html.includes("Just a moment...") || html.includes("cf-browser-verification"))) {
-                console.warn(`[NHentai Search] ⚠️ ¡ALERTA! Parece que Cloudflare bloqueó la petición.`);
+                console.warn(`[NHentai Search] ⚠️ Cloudflare bloqueó la petición.`);
             }
 
             const $ = parseHTML(html);
-            const results = [];
             const galleries = $(".gallery");
+            console.log("[NHentai] galleries found:", galleries.length);
 
+// Si no hay galleries, ver qué selectores sí existen
+            if (galleries.length === 0) {
+                console.log("[NHentai] body classes:", $("body").attr("class"));
+                console.log("[NHentai] has #content:", $("body").length);
+                // Ver si hay algún container alternativo
+                console.log("[NHentai] .container:", $(".container").length);
+                console.log("[NHentai] .index-container:", $(".index-container").length);
+            }
 
             galleries.forEach((el, index) => {
-                const href  = el.find("a").attr("href") || "";
-                const img   = el.find("img");
-                const image = img.attr("data-src") || img.attr("src") || "";
-                const title = this._shortenTitle(el.find(".caption").text().trim());
-                const id    = this._parseId(href);
-                
-                if (id) {
-                    results.push({ id, image, title, type: "book" });
+                if (index < 3) { // solo los primeros 3 para no spam
+                    const href  = el.find("a").attr("href") || "";
+                    const img   = el.find("img");
+                    const image = img.attr("data-src") || img.attr("src") || "";
+                    const title = el.find(".caption").text().trim();
+                    const id    = this._parseId(href);
+                    console.log(`[NHentai] gallery[${index}]: id=${id} href=${href} title=${title} img=${image}`);
                 }
             });
 
