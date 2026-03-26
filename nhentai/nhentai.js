@@ -66,6 +66,7 @@ class NHentai extends Manga {
     }
 
     async search({ query = "", page = 1, filters = null }) {
+        console.log("[NHentai] search called, query=" + query + " page=" + page);
 
         if (query.startsWith("id:") || (!isNaN(query) && query.length > 0 && query.length <= 7)) {
             return [await this.getMetadata(this._parseId(query))];
@@ -108,13 +109,17 @@ class NHentai extends Manga {
 
         try {
 
-            const { html } = await headless.fetch(url, {
+            console.log("[NHentai] antes de headless.fetch, url=" + url);
+
+            const result = await headless.fetch(url, {
                 waitFor: { selector: ".gallery" },
                 block:   ["fonts", "media"],
             });
 
-            console.log("[NHentai] html length:", html ? html.length : "NULL");
-            console.log("[NHentai] html snippet:", html ? html.slice(0, 300) : "empty");
+            console.log("[NHentai] headless.fetch OK, html length=" + (result.html ? result.html.length : "null"));
+
+            const { html } = result;
+
 
             if (html && (html.includes("Just a moment...") || html.includes("cf-browser-verification"))) {
                 console.warn(`[NHentai Search] ⚠️ Cloudflare bloqueó la petición.`);
@@ -132,6 +137,8 @@ class NHentai extends Manga {
                 console.log("[NHentai] .container:", $(".container").length);
                 console.log("[NHentai] .index-container:", $(".index-container").length);
             }
+            const results = [];
+
 
             galleries.forEach((el, index) => {
                 if (index < 3) { // solo los primeros 3 para no spam
