@@ -66,8 +66,6 @@ class NHentai extends Manga {
     }
 
     async search({ query = "", page = 1, filters = null }) {
-        console.log("[NHentai] search called, query=" + query + " page=" + page);
-
         if (query.startsWith("id:") || (!isNaN(query) && query.length > 0 && query.length <= 7)) {
             return [await this.getMetadata(this._parseId(query))];
         }
@@ -109,14 +107,10 @@ class NHentai extends Manga {
 
         try {
 
-            console.log("[NHentai] antes de headless.fetch, url=" + url);
-
             const result = await headless.fetch(url, {
                 waitFor: { selector: ".gallery" },
                 block:   ["fonts", "media"],
             });
-
-            console.log("[NHentai] headless.fetch OK, html length=" + (result.html ? result.html.length : "null"));
 
             const { html } = result;
 
@@ -129,26 +123,21 @@ class NHentai extends Manga {
             const galleries = $(".gallery");
             console.log("[NHentai] galleries found:", galleries.length);
 
-// Si no hay galleries, ver qué selectores sí existen
-            if (galleries.length === 0) {
-                console.log("[NHentai] body classes:", $("body").attr("class"));
-                console.log("[NHentai] has #content:", $("body").length);
-                // Ver si hay algún container alternativo
-                console.log("[NHentai] .container:", $(".container").length);
-                console.log("[NHentai] .index-container:", $(".index-container").length);
-            }
             const results = [];
 
 
-            galleries.forEach((el, index) => {
-                if (index < 3) { // solo los primeros 3 para no spam
-                    const href  = el.find("a").attr("href") || "";
-                    const img   = el.find("img");
-                    const image = img.attr("data-src") || img.attr("src") || "";
-                    const title = el.find(".caption").text().trim();
-                    const id    = this._parseId(href);
-                    console.log(`[NHentai] gallery[${index}]: id=${id} href=${href} title=${title} img=${image}`);
-                }
+            galleries.forEach((el) => {
+                const href  = el.find("a").attr("href") || "";
+                const img   = el.find("img");
+                const image = img.attr("data-src") || img.attr("src") || "";
+                const title = el.find(".caption").text().trim();
+                const id    = this._parseId(href);
+                results.push({
+                    id,
+                    title,
+                    image,
+                    url: `${this.baseUrl}${href}`,
+                });
             });
 
             return results;
