@@ -1,0 +1,16 @@
+id: anizone
+name: AniZone
+version: "1.0.0"
+author: "dot-fx"
+type: anime
+main: AniZone.js
+language: en
+nsfw: false
+settings:
+  - key: preferred_server
+    label: Preferred Server
+    type: select
+    default: "HLS"
+    options:
+      - value: "HLS"
+        label: "HLS (Standard)"

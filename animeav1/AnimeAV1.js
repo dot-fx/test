@@ -251,8 +251,6 @@ class AnimeAV1 extends Anime {
         const mediaId = data[root.id];
         const image = mediaId ? `${this.cdnUrl}/backdrops/${mediaId}.jpg` : undefined;
 
-        console.log("episodeIndexes (raw):", JSON.stringify(episodeIndexes));
-
         if (!Array.isArray(episodeIndexes)) {
             console.log("episodeIndexes no es un array. Es:", typeof episodeIndexes);
             return [];
@@ -295,17 +293,22 @@ class AnimeAV1 extends Anime {
         if (!data || !root) throw new Error("No se encontraron servidores");
 
         const embedsObj = data[root.embeds];
-        const catKey = category.toUpperCase(); // Busca "SUB" o "DUB"
+        const catKey = category.toUpperCase(); // "SUB" o "DUB"
 
         const listIndex = embedsObj[catKey];
-        if (typeof listIndex !== "number") throw new Error(`No hay streams para ${catKey}`);
+
+        if (typeof listIndex !== "number") {
+            throw new Error(`No hay streams para ${catKey}. Disponibles: ${Object.keys(embedsObj).filter(k => typeof embedsObj[k] === 'number').join(", ")}`);
+        }
 
         const serverList = data[listIndex];
         if (!Array.isArray(serverList)) throw new Error("Lista de servidores vacía");
 
+        console.log(`[Debug] Cantidad de servidores encontrados en ${catKey}:`, serverList.length);
+
         let hlsUrl = null;
 
-        for (const ptr of serverList) {
+        for (const [i, ptr] of serverList.entries()) {
             const srv = data[ptr];
             if (!srv) continue;
 
