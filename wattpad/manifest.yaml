@@ -1,0 +1,9 @@
+id: wattpad
+name: Wattpad
+version: "1.0.0"
+author: dot-fx
+type: novel
+main: wattpad.js
+icon: https://www.wattpad.com/favicon.ico
+language: multi
+skip_default_processing: true

@@ -12,23 +12,10 @@
       "manifestUrl": "https://raw.githubusercontent.com/dot-fx/test/refs/heads/master/animeav1/manifest.yaml"
     },
     {
-      "id": "nhentai",
-      "name": "nhentai",
-      "version": "1.0.0",
-      "author": "dot-fx",
-      "ext_type": "manga",
-      "language": "en",
-      "main": "nhentai.js",
-      "icon": "https://nhentai.net/static/favicon.ico",
-      "nsfw": true,
-      "skip_default_processing": true,
-      "manifestUrl": "https://raw.githubusercontent.com/dot-fx/test/refs/heads/master/nhentai/manifest.yaml"
-    },
-    {
       "id": "weebcentral",
       "name": "WeebCentral",
-      "version": "1.1.0",
-      "author": "Unknown",
+      "version": "1.0.0",
+      "author": "dot-fx",
       "ext_type": "manga",
       "language": "en",
       "main": "WeebCentral.js",
@@ -36,15 +23,26 @@
       "manifestUrl": "https://raw.githubusercontent.com/dot-fx/test/refs/heads/master/weebcentral/manifest.yaml"
     },
     {
-      "id": "mangapill",
-      "name": "MangaPill",
-      "version": "1.1.0",
+      "id": "anizone",
+      "name": "AniZone",
+      "version": "1.0.0",
       "author": "dot-fx",
-      "ext_type": "manga",
-      "language": "en",
-      "main": "MangaPill.js",
-      "icon": "https://mangapill.com/static/favicon/favicon-32x32.png",
-      "manifestUrl": "https://raw.githubusercontent.com/dot-fx/test/refs/heads/master/mangapill/manifest.yaml"
+      "ext_type": "anime",
+      "language": "multi",
+      "main": "anizone.js",
+      "icon": "",
+      "manifestUrl": "https://raw.githubusercontent.com/dot-fx/test/refs/heads/master/anizone/manifest.yaml"
+    },
+    {
+      "id": "wattpad",
+      "name": "Wattpad",
+      "version": "1.0.0",
+      "author": "dot-fx",
+      "ext_type": "novel",
+      "language": "multi",
+      "main": "wattpad.js",
+      "icon": "https://www.wattpad.com/favicon.ico",
+      "manifestUrl": "https://raw.githubusercontent.com/dot-fx/test/refs/heads/master/wattpad/manifest.yaml"
     }
   ]
 }
