@@ -65,7 +65,7 @@ class NHentai extends Manga {
         return found;
     }
 
-    async search({ query = "", page = 1, filters = null }) {
+    async search(query, filters, page) {
         if (query.startsWith("id:") || (!isNaN(query) && query.length > 0 && query.length <= 7)) {
             return [await this.getMetadata(this._parseId(query))];
         }

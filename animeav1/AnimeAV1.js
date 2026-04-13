@@ -114,7 +114,8 @@ class AnimeAV1 extends Anime {
         return { data: null, root: null };
     }
 
-    async search({ query, filters }) {
+    async search(query, filters, page) {
+
         if (query && (!filters || Object.keys(filters).length === 0)) {
             const res = await fetch(`${this.api}/api/search`, {
                 method: "POST",
@@ -134,7 +135,7 @@ class AnimeAV1 extends Anime {
         }
 
         const params = new URLSearchParams();
-        params.append('page', '1');
+        params.append('page', String(page));
 
         if (query) params.append('search', query);
 

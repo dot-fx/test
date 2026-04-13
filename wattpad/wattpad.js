@@ -62,7 +62,7 @@ class Wattpad extends Novel {
         };
     }
 
-    async search({ query = "", page = 1, filters = {} }) {
+    async search(query, filters, page) {
         const limit  = 15;
         const offset = (page - 1) * limit;
 

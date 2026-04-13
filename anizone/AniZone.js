@@ -11,8 +11,7 @@ class Anizone extends Anime {
         };
     }
 
-    async search(queryObj) {
-        const query = queryObj.query ?? "";
+    async search(query, filters, page) {
         const res = await fetch(
             `${this.api}/anime?search=${encodeURIComponent(query)}`,
             {
