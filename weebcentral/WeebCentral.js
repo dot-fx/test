@@ -311,9 +311,16 @@ class WeebCentral extends Manga {
             const idMatch = href.match(/\/chapters\/([^/]+)/);
             if (!idMatch) return;
 
-            const spans = el.find("span");
-            const title = spans.length > 0 ? spans[0].text().trim() : "";
-            const numMatch = title.match(numRegex);
+            let title = "";
+
+            const numMatch = el.text().match(/(\d+(\.\d+)?)/);
+            const number = numMatch ? Number(numMatch[1]) : 0;
+
+            if (number) {
+                title = `Chapter ${number}`;
+            } else {
+                title = `Chapter`;
+            }
 
             chapters.push({
                 id:          idMatch[1],
