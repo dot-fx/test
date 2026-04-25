@@ -2,7 +2,7 @@ class AnimeAV1 extends Anime {
     api = "https://animeav1.com";
     cdnUrl = "https://cdn.animeav1.com";
 
-    getSettings() {
+    getStreamingSettings() {
         return {
             episodeServers: ["HLS"],
             supportsDub: true,
@@ -280,10 +280,8 @@ class AnimeAV1 extends Anime {
         });
     }
 
-    async findEpisodeServer(episodeOrId, _server, category = "sub") {
-        const idStr = typeof episodeOrId === "string" ? episodeOrId : episodeOrId.id;
-
-        const [slug, number] = idStr.split("$");
+    async findEpisodeServer(episodeId, _server, category = "sub") {
+        const [slug, number] = episodeId.split("$");
         if (!slug || !number) throw new Error("ID de episodio malformado");
 
         const res = await fetch(`${this.api}/media/${slug}/${number}/__data.json`);

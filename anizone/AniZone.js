@@ -4,7 +4,7 @@ class Anizone extends Anime {
         this.api = "https://anizone.to";
     }
 
-    getSettings() {
+    getStreamingSettings() {
         return {
             episodeServers: ["HLS"],
             supportsDub: false,
