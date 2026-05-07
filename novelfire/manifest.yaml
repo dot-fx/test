@@ -1,0 +1,10 @@
+id: novelfire
+name: NovelFire
+version: 1.0.0
+author: dot-fx
+icon: https://novelfire.net/favicon.ico
+main: novelfire.js
+type: novel
+language: en
+nsfw: false
+skip_default_processing: true

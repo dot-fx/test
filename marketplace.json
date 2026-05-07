@@ -12,6 +12,17 @@
       "manifestUrl": "https://raw.githubusercontent.com/dot-fx/test/refs/heads/master/animeav1/manifest.yaml"
     },
     {
+      "id": "novelfire",
+      "name": "NovelFire",
+      "version": "1.0.0",
+      "author": "dot-fx",
+      "ext_type": "novel",
+      "language": "en",
+      "main": "novelfire.js",
+      "icon": "https://novelfire.net/favicon.ico",
+      "manifestUrl": "https://raw.githubusercontent.com/dot-fx/test/refs/heads/master/novelfire/manifest.yaml"
+    },
+    {
       "id": "weebcentral",
       "name": "WeebCentral",
       "version": "1.0.0",
