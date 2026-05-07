@@ -2,7 +2,7 @@ id: novelfire
 name: NovelFire
 version: 1.0.0
 author: dot-fx
-icon: https://novelfire.net/favicon.ico
+icon: https://novelfire.net/logo.ico?v=11.1.4
 main: novelfire.js
 type: novel
 language: en
